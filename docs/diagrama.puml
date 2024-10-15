@@ -1,0 +1,136 @@
+@startuml diagrama
+class Videojuego{
+    - EstadoJuego : estadoJuego[1]
+}
+class PacmanJuego{
+    - Personaje : personajes[]
+    - Escenario : escenarios[]
+    - PaletaColores : paletaColor[1]
+    - Audio : sonidos[]
+    - Partida : partidas[]
+}
+class Personaje{
+    - EstadoFisico : estadoActual[1]
+}
+class PersonajeJugable
+class PersonajeNoJugable{
+    - Puntaje : puntaje[]
+    - Color : color[4]
+}
+class Pacman
+class Usuario
+class Fantasma
+class FantasmaNaranja
+class FantasmaAzul
+class FantasmaRosa
+class FantasmaVerde
+class Jugador{
+    - Usuario : usuario[]
+}
+class Color
+class PaletaColores{
+    - Color : colores[]
+}
+class Puntaje
+class Escenario{
+    - Elemento : elementos[]
+    - Nivel : nivel[1]
+}
+class Nivel{
+    - Dificultad : dificultad[1]
+}
+class Audio
+class Elemento
+class Cereza{
+    - Puntaje : puntaje[]
+}
+class Muro
+class Dificultad
+class EstadoFisico
+class Dañado
+class Estable
+class Marcador
+class Estrategia{
+    -Fantasma : estrategias[1]
+}
+class EstadoJuego
+class Detenido
+class Jugando
+class Partida
+
+
+Videojuego <|-- PacmanJuego
+Personaje <|-- PersonajeJugable
+Personaje <|-- PersonajeNoJugable
+PersonajeNoJugable <|-- Fantasma
+Fantasma <|-- FantasmaRosa
+Fantasma <|-- FantasmaVerde
+Fantasma <|-- FantasmaAzul
+Fantasma <|-- FantasmaNaranja
+Elemento <|--Cereza
+Elemento <|--Muro
+EstadoFisico <|-- Dañado
+EstadoFisico <|-- Estable
+EstadoJuego <|-- Detenido
+EstadoJuego <|-- Jugando
+
+
+PacmanJuego "1" *-- "*" Personaje
+PacmanJuego "1" *-- "*" Escenario 
+Escenario "1" *-- "*" Elemento
+Escenario "1" *-- "1" Nivel
+Nivel "1" *-- "1" Dificultad
+PersonajeNojugable *-- Puntaje
+Cereza *-- Puntaje
+Personaje "1" *-- "1" EstadoFisico
+PaletaColores "1" *-- "*" Color
+PacmanJuego "1" *-- "1" PaletaColores
+Jugador *-- Usuario
+PacmanJuego "1" *-- "*" Audio
+Fantasma "1" *-- "1" Estrategia
+Videojuego "1" *-- "1" EstadoJuego
+PacmanJuego "1" *-- "*" Partida
+
+PersonajeJugable <|-- Pacman
+Usuario o-- PersonajeJugable
+Pacman o-- Fantasma
+Pacman o-- Muro
+Pacman o-- Cereza
+Jugador o-- Videojuego
+Marcador o-- Puntaje
+Partida o-- Marcador
+
+
+
+Fantasma : Seguir() 
+Fantasma : Atacar()
+Fantasma : Huir()
+
+Audio : ReproducirSonido()
+Audio : DetenerSonido()
+Audio : CambiarSonido()
+
+Muro : Bloquear()
+Muro : verificarColision()
+
+PersonajeJugable : Comer()
+PersonajeJugable : Mover()
+
+Puntaje : Aumentar()
+Puntaje : Disminuir()
+
+
+Cereza : AumentarPuntaje()
+
+Videojuego : Iniciar()
+Videojuego : Detener()
+Videojuego : Salir()
+Videojuego : Reanudar()
+
+Marcador : MostrarPuntaje()
+
+
+
+
+@enduml
+
