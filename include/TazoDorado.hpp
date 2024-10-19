@@ -5,7 +5,7 @@ private:
 
 public:
      TazoDorado() {
-        //Cuando se inicializa, flotando es falso
+        //Cuando se inicializa, flotando es falso. Referenciamos la ubicacion actual
         this->flotando=false;
      }
     ~ TazoDorado() {
