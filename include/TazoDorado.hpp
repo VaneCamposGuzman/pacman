@@ -8,6 +8,10 @@ public:
         //Cuando se inicializa, flotando es falso. Referenciamos la ubicacion actual
         this->flotando=false;
      }
+
+     void Inicializar() {
+        this->flotando=false;
+     }
     ~ TazoDorado() {
     }
 
